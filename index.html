@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Modern Style Prize Pool</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: url('https://images.unsplash.com/photo-1573788583106-acf6c8f3f0b5?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8cHJpemUlMjB3aGVlbHxlbnwwfHwwfHx8MA%3D%3D') no-repeat center center fixed;
+    background-size: cover;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    color: #fff;
+    padding: 20px;
+    position: relative;
+    overflow: hidden;
+}
+
+body::before {
+    content: "";
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background: rgba(0, 0, 0, 0.55);
+    backdrop-filter: blur(3px);
+    z-index: -1;
+} */
+
+        /* Base styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            color: #333;
+            padding: 20px;
+        } */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    /* Casino vibe wallpaper (dark + glowing lights) */
+    background: url('https://images.unsplash.com/photo-1573788583106-acf6c8f3f0b5?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8cHJpemUlMjB3aGVlbHxlbnwwfHwwfHx8MA%3D%3D') no-repeat center center fixed;
+    background-size: cover;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    color: #fff;
+    padding: 20px;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Overlay with golden glow */
+body::before {
+    content: "";
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background: rgba(0, 0, 0, 0.65); /* dark casino feel */
+    background-image: radial-gradient(circle at 50% 30%, rgba(255,215,0,0.2), transparent 70%);
+    z-index: -1;
+}
+
+        /* Main button styling */
+        .main-button {
+            padding: 16px 32px;
+            font-size: 18px;
+            font-weight: 600;
+            cursor: pointer;
+            background: linear-gradient(135deg, #ff9a9e 0%, #fad0c4 100%);
+            color: #333;
+            border: none;
+            border-radius: 50px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .main-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 25px rgba(0, 0, 0, 0.3);
+        }
+
+        .main-button:active {
+            transform: translateY(1px);
+        }
+
+        /* Popup overlay */
+        .popup {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+            z-index: 1000;
+            animation: fadeIn 0.3s ease-out;
+            backdrop-filter: blur(5px);
+        }
+
+        /* Popup content */
+        .popup-content {
+            position: relative;
+            background: linear-gradient(135deg, #ffffff 0%, #f5f7fa 100%);
+            margin: 10% auto;
+            padding: 40px 30px;
+            width: 90%;
+            max-width: 500px;
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+            text-align: center;
+            animation: slideUp 0.4s ease-out;
+            overflow: hidden;
+        }
+
+        /* Decorative elements */
+        .popup-content::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: linear-gradient(90deg, #6a11cb, #2575fc, #ff9a9e);
+        }
+
+        .popup-icon {
+            font-size: 60px;
+            margin-bottom: 20px;
+            background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        /* Close button */
+        .close {
+            position: absolute;
+            top: 15px;
+            right: 20px;
+            font-size: 28px;
+            font-weight: bold;
+            color: #aaa;
+            cursor: pointer;
+            transition: color 0.3s;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+        }
+
+        .close:hover {
+            color: #ff4757;
+            background-color: rgba(255, 71, 87, 0.1);
+        }
+
+        /* Popup heading */
+        .popup-content h2 {
+            margin-bottom: 15px;
+            font-size: 28px;
+            color: #2d3436;
+            font-weight: 700;
+        }
+
+        .popup-content p {
+            margin-bottom: 25px;
+            color: #636e72;
+            line-height: 1.6;
+        }
+
+        /* Sound button */
+        .sound-button {
+            padding: 14px 28px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
+            color: white;
+            border: none;
+            border-radius: 50px;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin: 0 auto;
+            box-shadow: 0 5px 15px rgba(106, 17, 203, 0.4);
+        }
+
+        .sound-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(106, 17, 203, 0.6);
+        }
+
+        .sound-button:active {
+            transform: translateY(1px);
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes slideUp {
+            from { 
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to { 
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 600px) {
+            .popup-content {
+                margin: 20% auto;
+                padding: 30px 20px;
+            }
+            
+            .popup-content h2 {
+                font-size: 24px;
+            }
+            
+            .popup-icon {
+                font-size: 50px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Button to trigger popup -->
+    <button id="openPopup" class="main-button">
+        <i class="fas fa-magic"></i> Click For Spin!!
+    </button>
+
+    <!-- The popup -->
+    <div id="popup" class="popup">
+        <div class="popup-content">
+            <span id="closePopup" class="close">&times;</span>
+            <div class="popup-icon">
+                <i class=""></i>
+            </div>
+            <h2>Welcome to the Prize Pool!</h2>
+            <p>Click the button below to play a delightful Pool. Enjoy the moment!</p>
+            <button id="playSound" class="sound-button">
+                <i class="fas fa-play"></i> Play To Win!
+            </button>
+        </div>
+    </div>
+
+    <audio id="sound" preload="auto">
+    <source src="files/khadim-rizwi-dalaay.mp3" type="audio/mp3">
+    Your browser does not suport the audio element.
+</audio>
+
+    <script>
+        // Get the modal, buttons, and sound element
+        const popup = document.getElementById("popup");
+        const openPopupButton = document.getElementById("openPopup");
+        const closePopupButton = document.getElementById("closePopup");
+        const playSoundButton = document.getElementById("playSound");
+        const sound = document.getElementById("sound");
+
+        // When the user clicks the "Click Me!" button, open the popup
+        openPopupButton.onclick = function() {
+            popup.style.display = "block";
+            document.body.style.overflow = "hidden"; // Prevent scrolling
+        };
+
+        // When the user clicks the "x" (close) button, close the popup
+        closePopupButton.onclick = function() {
+            popup.style.display = "none";
+            document.body.style.overflow = "auto"; // Re-enable scrolling
+        };
+
+        // When the user clicks the "Play Sound" button, play the sound
+        playSoundButton.onclick = function() {
+            sound.play();
+            
+            // Add a little animation to the button
+            playSoundButton.innerHTML = '<i class="fas fa-volume-up"></i> hyyy ooo gurbat teri bhen ko yawan...';
+            playSoundButton.style.background = "linear-gradient(135deg, #00b894 0%, #55efc4 100%)";
+            
+            setTimeout(() => {
+                playSoundButton.innerHTML = '<i class="fas fa-play"></i> Play Wheel';
+                playSoundButton.style.background = "linear-gradient(135deg, #6a11cb 0%, #2575fc 100%)";
+            }, 2000);
+        };
+
+        // If the user clicks anywhere outside of the popup, close it
+        window.onclick = function(event) {
+            if (event.target == popup) {
+                popup.style.display = "none";
+                document.body.style.overflow = "auto"; // Re-enable scrolling
+            }
+        };
+
+        // Add keyboard support (ESC key to close popup)
+        document.addEventListener('keydown', function(event) {
+            if (event.key === 'Escape' && popup.style.display === 'block') {
+                popup.style.display = 'none';
+                document.body.style.overflow = "auto";
+            }
+        });
+    </script>
+</body>
+</html>
